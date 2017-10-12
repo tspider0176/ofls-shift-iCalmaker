@@ -14,4 +14,7 @@ name = ARGV[1]
 from = DateTime.parse(ARGV[2])
 to = DateTime.parse(ARGV[3])
 shift_list = ShiftReader.new(excel, name, from, to).run
-puts IcalMaker.new(shift_list).to_s
+
+File.open('events.ics', 'w') do |f|
+  f.puts(IcalMaker.new(shift_list).to_s)
+end
