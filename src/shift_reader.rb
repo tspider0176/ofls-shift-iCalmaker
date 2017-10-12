@@ -1,4 +1,4 @@
-require_relative 'period'
+require_relative 'module/period'
 
 # Open excel file
 class ShiftReader

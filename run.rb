@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'roo'
-require_relative 'shift_reader'
-require_relative 'ical_maker'
-
+require_relative 'src/shift_reader'
+require_relative 'src/ical_maker'
 
 if ARGV[0].nil? || ARGV[1].nil? || ARGV[2].nil?
   puts "USAGE:\n"
