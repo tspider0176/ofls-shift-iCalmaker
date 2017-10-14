@@ -1,4 +1,4 @@
-### from excel
+### iCal auto-creation from excel
 Create \*.ics file automatically from excel(\*.xlsx) file containing Shift info.
 
 #### init
