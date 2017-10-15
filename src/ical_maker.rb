@@ -11,27 +11,17 @@ class IcalMaker
   private
 
   def create_text
-    """BEGIN:VCALENDAR
+<<-EOS
+BEGIN:VCALENDAR
 #{header}
+
 #{@date_list.map { |arr| v_event('修学支援室TA', '修学支援室', arr[0], arr[1]) }.join("\n")}
-END:VCALENDAR"""
+END:VCALENDAR
+EOS
   end
 
   def header
-    """PRODID:-//tspider0176//calmaker//EN
-VERSION:2.0
-CALSCALE:GREGORIAN
-BEGIN:VTIMEZONE
-TZID:Asia/Tokyo
-TZURL:http://tzurl.org/zoneinfo-outlook/Asia/Tokyo
-X-LIC-LOCATION:Asia/Tokyo
-BEGIN:STANDARD
-TZOFFSETFROM:+0900
-TZOFFSETTO:+0900
-TZNAME:JST
-DTSTART:19700101T000000
-END:STANDARD
-END:VTIMEZONE"""
+    "PRODID:-//tspider0176//calmaker//EN\nVERSION:2.0\nCALSCALE:GREGORIAN"
   end
 
   def uuid
@@ -50,7 +40,8 @@ END:VTIMEZONE"""
   end
 
   def v_event(summary, location, dtstart, dtend)
-    """BEGIN:VEVENT
+<<-EOS
+BEGIN:VEVENT
 DTSTAMP:#{vcal_time_now}Z
 UID:#{uuid}
 SUMMARY:#{summary}
@@ -58,6 +49,7 @@ DESCRIPTION:#{summary}
 LOCATION:#{location}
 DTSTART;TZID=\"Asia/Tokyo\":#{date_to_vcal_date(dtstart)}
 DTEND;TZID=\"Asia/Tokyo\":#{date_to_vcal_date(dtend)}
-END:VEVENT"""
+END:VEVENT
+EOS
   end
 end

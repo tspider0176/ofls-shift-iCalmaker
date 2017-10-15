@@ -50,13 +50,13 @@ class ShiftReader
   def pm_period(row_char, day)
     case row_char
     when 'I', 'J', 'K'
-      period3(row_char, day)
+      period3(day)
     when 'L', 'M', 'N'
-      period4(row_char, day)
+      period4(day)
     when 'O', 'P', 'Q'
-      period5(row_char, day)
+      period5(day)
     when 'R', 'S'
-      period6(row_char, day)
+      period6(day)
     end
   end
 
