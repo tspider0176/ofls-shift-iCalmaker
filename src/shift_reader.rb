@@ -36,8 +36,7 @@ class ShiftReader
     [row, @excel.cell(row, col)]
   end
 
-  # 1st = start, 2nd = end
-  def make_daterange(row_char, day)
+  def am_period(row_char, day)
     case row_char
     when 'B', 'C'
       period1(day)
@@ -45,14 +44,29 @@ class ShiftReader
       period2(day)
     when 'F', 'G', 'H'
       period25(day)
+    end
+  end
+
+  def pm_period(row_char, day)
+    case row_char
     when 'I', 'J', 'K'
-      period3(day)
+      period3(row_char, day)
     when 'L', 'M', 'N'
-      period4(day)
+      period4(row_char, day)
     when 'O', 'P', 'Q'
-      period5(day)
+      period5(row_char, day)
     when 'R', 'S'
-      period6(day)
+      period6(row_char, day)
+    end
+  end
+
+  # 1st = start, 2nd = end
+  def make_daterange(row_char, day)
+    case row_char
+    when 'B', 'C', 'D', 'E', 'F', 'G', 'H'
+      am_period(row_char, day)
+    when 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S'
+      pm_period(row_char, day)
     end
   end
 end
