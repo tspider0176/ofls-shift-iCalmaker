@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'roo'
 require 'gmail'
+require "io/console"
 require_relative 'src/shift_reader'
 require_relative 'src/ical_maker'
 
@@ -20,25 +21,30 @@ File.open('events.ics', 'w') do |f|
   f.puts(IcalMaker.new(shift_list).to_s)
 end
 
-puts 'Do you send ical file to your smart phone with g-mail? [y/n]'
-if STDIN.gets == 'y'
-  print 'e-mail >'
-  email = STDIN.gets.chomp
+puts 'Do you send ical file to your G-mail address yourself? [y/n]'
+print '> '
+
+if STDIN.gets.chomp == 'y'
+  print 'Your G-mail address > '
+  email = STDIN.gets.chomp.to_s
   USERNAME = email
-  print 'password >'
-  PASSWORD = STDIN.gets.chomp
+  print 'Password > '
+  PASSWORD = STDIN.noecho(&:gets).chomp.to_s
 
-  gmail = Gmail.new(USERNAME, PASSWORD)
-
-  message = gmail.generate_message do
-    to email
-    subject 'Sending ical file'
-    html_part do
-      content_type 'text/html; charset=UTF-8'
-      body '<h1>ical file for your shift</h1>'
+  if email.nil? || PASSWORD.nil?
+    puts 'Assume your address or password.'
+  else
+    gmail = Gmail.new(USERNAME, PASSWORD)
+    message = gmail.generate_message do
+      to email
+      subject 'Sending ical file'
+      html_part do
+        content_type 'text/html; charset=UTF-8'
+        body '<h1>ical file for your shift</h1>'
+      end
     end
-  end
 
-  gmail.deliver(message)
-  gmail.logout
+    gmail.deliver(message)
+    gmail.logout
+  end
 end
