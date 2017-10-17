@@ -1,12 +1,12 @@
 ## iCal auto-creator from excel
 Create \*.ics file automatically from excel(\*.xlsx) file containing Shift info.
 
-### init
+### Init
 ```
 bundle install
 ```
 
-### run
+### Run
 ```sh
 ruby run.rb [*.xlsx] [name] [from] [to]
 ```

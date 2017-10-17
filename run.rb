@@ -25,16 +25,22 @@ puts 'Do you send ical file to your G-mail address yourself? [y/n]'
 print '> '
 
 if STDIN.gets.chomp == 'y'
-  print 'Your G-mail address > '
-  email = STDIN.gets.chomp.to_s
-  USERNAME = email
-  print 'Password > '
-  PASSWORD = STDIN.noecho(&:gets).chomp.to_s
+  # Read auth info. from auth
+  File.open('auth') do |file|
+    file.flock File::LOCK_EX
+    file.each_line do |info|
+      EMAIL = info.split(',')[0].chomp
+      PASSWORD = info.split(',')[1].chomp
+    end
+  end
 
-  if email.nil? || PASSWORD.nil?
+  puts EMAIL
+  puts PASSWORD
+
+  if EMAIL.nil? || PASSWORD.nil?
     puts 'Assume your address or password.'
   else
-    gmail = Gmail.new(USERNAME, PASSWORD)
+    gmail = Gmail.new(EMAIL, PASSWORD)
     message = gmail.generate_message do
       to email
       subject 'Sending ical file'
