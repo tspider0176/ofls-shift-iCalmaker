@@ -29,20 +29,17 @@ if STDIN.gets.chomp == 'y'
   File.open('auth') do |file|
     file.flock File::LOCK_EX
     file.each_line do |info|
-      EMAIL = info.split(',')[0].chomp
-      PASSWORD = info.split(',')[1].chomp
+      EMAIL = info.split(',')[0].chomp.split('=')[1].delete('"')
+      PASSWORD = info.split(',')[1].chomp.split('=')[1].delete('"')
     end
   end
-
-  puts EMAIL
-  puts PASSWORD
 
   if EMAIL.nil? || PASSWORD.nil?
     puts 'Assume your address or password.'
   else
     gmail = Gmail.new(EMAIL, PASSWORD)
     message = gmail.generate_message do
-      to email
+      to EMAIL
       subject 'Sending ical file'
       html_part do
         content_type 'text/html; charset=UTF-8'
