@@ -17,12 +17,11 @@ ruby run.rb shift.xlsx 山田 2017-10-10 2017-10-18
 ```
 For above condition, this app read shift information of 山田 from 2017-10-10 to 2017-10-18 on excel.
 
-After execution, `events.ics` will output on project root dir.
+After execution, `events.ics` will be outputted to project root dir.
 
 ### Send ical file with Gmail
-Create auth file on project root directory.
-Write your authentication information to the file.
+Create auth file on project root directory and write your authentication information to it.
 
 ```sh
-$ echo "USERNAME="[Your gmail address]", PASSWORD="[Your app password]"" > auth
+$ echo "USERNAME=\"[Your gmail address]\", PASSWORD=\"[Your app password]\"" > auth
 ```
