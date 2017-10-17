@@ -45,6 +45,7 @@ if STDIN.gets.chomp == 'y'
         content_type 'text/html; charset=UTF-8'
         body '<h1>ical file for your shift</h1>'
       end
+      add_file 'events.ics'
     end
 
     gmail.deliver(message)
