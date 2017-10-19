@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'roo'
 require 'gmail'
-require "io/console"
+require 'io/console'
 require_relative 'src/shift_reader'
 require_relative 'src/ical_maker'
 
