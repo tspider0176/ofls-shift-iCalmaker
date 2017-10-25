@@ -1,12 +1,18 @@
 ## iCal auto-creator from excel
 Create \*.ics file automatically from excel(\*.xlsx) file containing Shift info.
 
-### Init
+### env
+```sh
+ruby -v
+->ruby 2.2.3p173 (2015-08-18 revision 51636) [x86_64-darwin15] 
+```
+
+### init
 ```
 bundle install
 ```
 
-### Run
+### run
 ```sh
 ruby run.rb [*.xlsx] [name] [from] [to]
 ```
@@ -19,7 +25,8 @@ For above condition, this app read shift information of 山田 from 2017-10-10 t
 
 After execution, `events.ics` will be outputted to project root dir.
 
-### Send ical file with Gmail
+### func
+* Send ical file with Gmail
 Create auth file on project root directory and write your authentication information to it.
 
 ```sh
