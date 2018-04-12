@@ -30,9 +30,7 @@ EOS
 
   def vcal_time_now
     now = DateTime.now
-    last_mod_date = now.year.to_s + now.month.to_s + now.day.to_s
-    last_mod_time = now.hour.to_s + now.minute.to_s + now.second.to_s
-    last_mod_date + 'T' + last_mod_time
+    "#{now.hour}#{now.minute}#{now.second}T#{now.year}#{now.month}#{now.day}"
   end
 
   def date_to_vcal_date(date)
