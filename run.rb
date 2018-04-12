@@ -21,6 +21,7 @@ File.open('events.ics', 'w') do |f|
   f.puts(IcalMaker.new(shift_list).to_s)
 end
 
+puts 'Done.'
 puts 'Do you send ical file to your G-mail address yourself? [y/n]'
 print '> '
 
