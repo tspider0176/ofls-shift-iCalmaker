@@ -28,7 +28,7 @@ class ShiftReader
 
   def find_target_rows
     (4..@excel.last_row)
-      .map { |num| ('A'..'S').map { |row_char| date_cell(row_char, num) }.to_h }
+      .map { |num| ('A'..'U').map { |row_char| date_cell(row_char, num) }.to_h }
       .select { |hash| hash['A'].between?(@from, @to) }
   end
 
@@ -65,7 +65,7 @@ class ShiftReader
     case row_char
     when 'B', 'C', 'D', 'E', 'F', 'G', 'H'
       am_period(row_char, day)
-    when 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S'
+    when 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V'
       pm_period(row_char, day)
     end
   end
