@@ -53,9 +53,9 @@ class ShiftReader
       period3(day)
     when 'L', 'M', 'N'
       period4(day)
-    when 'O', 'P', 'Q'
+    when 'O', 'P', 'Q', 'R'
       period5(day)
-    when 'R', 'S'
+    when 'S', 'T', 'U', 'V'
       period6(day)
     end
   end
