@@ -3,23 +3,32 @@ Create \*.ics file automatically from excel(\*.xlsx) file containing Shift info.
 
 ### env
 ```sh
-ruby -v
+$ ruby -v
 ->ruby 2.2.3p173 (2015-08-18 revision 51636) [x86_64-darwin15] 
 ```
 
 ### init
 ```
-bundle install
+$ bundle install --path vendor/bundle
 ```
+
+if you are non-super user,
+
+```
+$ bundle config build.nokogiri --use-system-libraries
+$ bundle install --path vendor/bundle
+```
+
+After you confirmed nokogiri lib correctlly installed, then move to next step.
 
 ### run
 ```sh
-ruby run.rb [*.xlsx] [name] [from] [to]
+$ ruby run.rb [*.xlsx] [name] [from] [to]
 ```
 
 ex.
 ```sh
-ruby run.rb shift.xlsx 山田 2017-10-10 2017-10-18
+$ ruby run.rb shift.xlsx 山田 2017-10-10 2017-10-18
 ```
 For above condition, this app read shift information of 山田 from 2017-10-10 to 2017-10-18 on excel.
 
